@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../interface/product';
 
 @Component({
@@ -11,6 +11,8 @@ export class StatelessComponent implements OnInit {
   public matricula: string;
   private disable: boolean;
 
+  @Output() cursomatriculado: EventEmitter<Product> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,6 +22,7 @@ export class StatelessComponent implements OnInit {
   matricularse() {
     this.disable = true;
     this.matricula = '¡Matriculado!';
+    this.cursomatriculado.emit(this.product);
 
   }
   isdisabled() {

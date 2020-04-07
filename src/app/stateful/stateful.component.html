@@ -6,13 +6,18 @@
 
       <div class="card-deck">
           <div class="card" *ngFor="let curso of shopModel.shopItems">
-            <app-stateless [product]="curso"></app-stateless>
+            <app-stateless [product]="curso" (cursomatriculado)="cursoMatriculado($event)"></app-stateless>
           </div>
          </div>
         </div>
         <ul class="list-group">
             <li *ngFor="let boughtItem of boughtItems"
-            class="list-group-item">{{boughtItem.title}}</li>
+            class="list-group-item">
+              {{boughtItem.title}}
+              <span class="badge badge-primary badge-pill">{{boughtItem.price | currency:"&euro;"}}</span>
+            </li>
+            <li class="list-group-item disabled"><h2>Total: {{finalPrice() | currency:"&euro;"}}</h2>
+            </li>
           </ul>
-
+          <app-confirm></app-confirm>
   </main><!-- /.container -->
